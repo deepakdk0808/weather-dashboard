@@ -11,25 +11,25 @@ const Farmer = ({ weatherData }) => {
     case "Low : Consider planting drought-resistant crops like millet, sorghum, and certain varieties of beans.":
       backgroundImage = "url('/img/farmer/millets.jpg')";
       tips = [
-        "Start early to avoid the afternoon heat.",
-        "Water plants in the morning to reduce evaporation.",
-        "Harvest fruits and vegetables in the morning for peak freshness.",
+        "दोपहर की गर्मी से बचने के लिए जल्दी शुरू करें।",
+        "वाष्पीकरण को कम करने के लिए सुबह के समय पौधों को पानी दें।",
+        "ताजगी की चोटी के लिए सुबह के समय फल और सब्जियां काटें।",
       ];
       break;
     case "Moderate : Consider planting crops like wheat, corn, and rice.":
       backgroundImage = "url('/img/farmer/rice.jpg')";
       tips = [
-        "Take breaks to avoid heat exhaustion.",
-        "Work in shaded areas during peak sunlight hours.",
-        "Use this time to maintain and repair farm equipment.",
+        "तापमान से थकान से बचने के लिए ब्रेक लें।",
+        "धूप के प्रमुख समय में छाया दार क्षेत्रों में काम करें।",
+        "इस समय का उपयोग कृषि उपकरणों की रखरखाव और मरम्मत करने के लिए करें।",
       ];
       break;
     case "High : Consider planting crops like sugarcane, bananas, and taro.":
       backgroundImage = "url('/img/farmer/banana.jpg')";
       tips = [
-        "Use this cooler time of day for planting.",
-        "Check for pests and diseases.",
-        "Clean and store tools and equipment.",
+        "बोने के लिए दिन के इस ठंडे समय का उपयोग करें।",
+        "कीटों और बीमारियों की जांच करें।",
+        "उपकरण और उपकरण को साफ़ करें और संग्रहित करें।",
       ];
       break;
     default:
