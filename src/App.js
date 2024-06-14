@@ -9,6 +9,7 @@ import "./style.css";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
+  const [dailyData,setDailyData] = useState(null);
   const [error, setError] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [userName, setUserName] = useState("");
@@ -23,7 +24,9 @@ const App = () => {
           if (latitude && longitude) {
             try {
               const weather = await fetchWeather(latitude, longitude);
-              setWeatherData(weather);
+              setWeatherData(weather.currentWeather);
+              setDailyData(weather.dailyForecast);
+              // console.log("Weather Data",dailyData);
             } catch (err) {
               console.error(err);
               setError("Failed to fetch weather data");
@@ -40,7 +43,7 @@ const App = () => {
     } else {
       setError("Geolocation not supported by your browser");
     }
-  }, []);
+  }, [dailyData]);
 
   const handleGroupSelect = (name, group) => {
     setUserName(name);
@@ -65,6 +68,7 @@ const App = () => {
       <Header
         onBack={selectedGroup ? handleBack : null}
         userName={userName}
+        
         place={weatherData ? weatherData.place : null}
         temperature={weatherData ? weatherData.temperature : null}
       />
@@ -73,7 +77,7 @@ const App = () => {
         <Routes>
           <Route
             path="/dashboard/*"
-            element={<Dashboard weatherData={weatherData} />}
+            element={<Dashboard weatherData={weatherData} dailyData={dailyData} />}
           />
         </Routes>
       </main>

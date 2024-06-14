@@ -204,4 +204,33 @@ footer {
   margin-top: 0;
 }
 
+.forecast-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px; /* Add margin-top for spacing */
+}
+
+.forecast-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.forecast-card {
+  width: 100%;
+  max-width: 400px; /* Adjust max-width to match info-box */
+  backdrop-filter: blur(10px); /* Apply frosted glass effect */
+  background-color: rgba(255, 255, 255, 0.3); /* Adjust opacity for frosted effect */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px; /* Equal spacing around each card */
+  padding: 20px;
+  text-align: center;
+}
+
+.forecast-card p {
+  margin: 5px 0;
+}
 

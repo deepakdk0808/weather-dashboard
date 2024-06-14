@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 
-const Traveler = ({ weatherData }) => {
+const Traveler = ({ weatherData, dailyData }) => {
   const travelTime = weatherData ? getTravelAdvisory(weatherData) : null;
   let backgroundImage = "";
   let tips = [];
@@ -55,22 +55,35 @@ const Traveler = ({ weatherData }) => {
 
   return (
     <div className="event-planner-container">
-
-    <div className="background_img" style={{ backgroundImage }}></div>
-      <div className="info-box">
-        <h2>Information</h2>
-        {weatherData && (
-          <div>
-            <p>Current Weather: {weatherData.description}</p>
-            <p>Rain Prediction: {weatherData.rain ? "Yes" : "No"}</p>
-            <p>Wind Speed: {weatherData.windSpeed.toFixed(2)} km/hr</p>
-            <p>Travel Advisory: {getTravelAdvisory(weatherData)}</p>
-            <h3>Tips:</h3>
+      <div className="info-card">
+        <div className="background_img" style={{ backgroundImage }}></div>
+        <div className="info-box">
+          <h2>Information</h2>
+          {weatherData && (
             <div>
-              <p>{tips[currentTipIndex]}</p>
+              <p>Current Weather: {weatherData.description}</p>
+              <p>Rain Prediction: {weatherData.rain ? "Yes" : "No"}</p>
+              <p>Wind Speed: {weatherData.windSpeed.toFixed(2)} km/hr</p>
+              <p>Travel Advisory: {getTravelAdvisory(weatherData)}</p>
+              <h3>Tips:</h3>
+              <div>
+                <p>{tips[currentTipIndex]}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+      </div>
+      <div className="forecast-card">
+        <h2>7-Day Weather Forecast</h2>
+        <div className="forecast-cards">
+          {dailyData &&
+            dailyData.map((day, index) => (
+              <div className="day-forecast" key={index}>
+                <p>{day.temperature.day}°C</p>
+                <p>Rain: {day.rain ? "Yes" : "No"}</p>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

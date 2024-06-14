@@ -5,22 +5,30 @@ import Farmer from "./farmer";
 import Traveler from "./traveller";
 import SportsPlayer from "./sports";
 
-const Dashboard = ({ weatherData }) => {
+const Dashboard = ({ weatherData,dailyData }) => {
+  // console.log("Weather Data",dailyData);
   return (
     <>
       <Routes>
         <Route
           path="event-planner"
-          element={<EventPlanner weatherData={weatherData} />}
+          element={
+            <EventPlanner weatherData={weatherData} dailyData={dailyData} />
+          }
         />
-        <Route path="farmer" element={<Farmer weatherData={weatherData} />} />
+        <Route
+          path="farmer"
+          element={<Farmer weatherData={weatherData} dailyData={dailyData} />}
+        />
         <Route
           path="traveler"
-          element={<Traveler weatherData={weatherData} />}
+          element={<Traveler weatherData={weatherData} dailyData={dailyData} />}
         />
         <Route
           path="sports"
-          element={<SportsPlayer weatherData={weatherData} />}
+          element={
+            <SportsPlayer weatherData={weatherData} dailyData={dailyData} />
+          }
         />
       </Routes>
     </>
