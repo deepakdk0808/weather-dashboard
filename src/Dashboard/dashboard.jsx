@@ -3,10 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import EventPlanner from "./eventPlanner";
 import Farmer from "./farmer";
 import Traveler from "./traveller";
+import SportsPlayer from "./sports";
 
 const Dashboard = ({ weatherData }) => {
   return (
-    <div className="dashboard">
+    <>
       <Routes>
         <Route
           path="event-planner"
@@ -17,8 +18,12 @@ const Dashboard = ({ weatherData }) => {
           path="traveler"
           element={<Traveler weatherData={weatherData} />}
         />
+        <Route
+          path="sports"
+          element={<SportsPlayer weatherData={weatherData} />}
+        />
       </Routes>
-    </div>
+    </>
   );
 };
 

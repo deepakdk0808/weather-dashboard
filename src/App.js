@@ -1,9 +1,8 @@
-// App.js
 import React, { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./Components/Common/header";
 import Footer from "./Components/Common/footer";
-import UserSelect from "./Components/Common/userSelect";
+import UserSelectModal from "./Components/Common/userModal";
 import Dashboard from "./Dashboard/dashboard";
 import { fetchWeather } from "./Services/weatherServices"; // Adjust the path as needed
 import "./style.css";
@@ -11,6 +10,10 @@ import "./style.css";
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [showModal, setShowModal] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -39,20 +42,35 @@ const App = () => {
     }
   }, []);
 
+  const handleGroupSelect = (name, group) => {
+    setUserName(name);
+    setSelectedGroup(group);
+    setShowModal(false);
+    navigate("/dashboard/" + group);
+  };
+
+  const handleBack = () => {
+    setSelectedGroup(null);
+    setShowModal(true);
+    setUserName("");
+    navigate("/");
+  };
+
   if (error) {
     return <div>{error}</div>;
   }
 
   return (
     <div className="app">
-      <Header />
-      <div className="temp">
-        <p>Place: {weatherData?.place.toUpperCase()}</p>
-        <p>Temperature: {weatherData?.temperature}°C</p>
-      </div>
+      <Header
+        onBack={selectedGroup ? handleBack : null}
+        userName={userName}
+        place={weatherData ? weatherData.place : null}
+        temperature={weatherData ? weatherData.temperature : null}
+      />
       <main>
+        {showModal && <UserSelectModal onGroupSelect={handleGroupSelect} />}
         <Routes>
-          <Route path="/" element={<UserSelect />} />
           <Route
             path="/dashboard/*"
             element={<Dashboard weatherData={weatherData} />}
